@@ -1,16 +1,16 @@
 resource "aws_ecs_service" "ybhackathon_service" {
-  name        = "ybhackathon-backend-service"
+  name        = "ybhackathon-2021-backend-service"
   cluster     = aws_ecs_cluster.ybhackathon.id
   launch_type = "FARGATE"
 
-  task_definition = "ybhackathon-backend"
+  task_definition = "ybhackathon-2021-backend"
 
   desired_count = 1
 
   load_balancer {
     target_group_arn = aws_alb_target_group.ybhackathon.arn
-    container_name   = "ybhackathon-backend"
-    container_port   = 5080
+    container_name   = "ybhackathon-2021-backend"
+    container_port   = 3000
   }
 
   network_configuration {
@@ -35,8 +35,8 @@ resource "aws_security_group" "ecs_tasks" {
 
   ingress {
     protocol        = "tcp"
-    from_port       = 5080
-    to_port         = 5080
+    from_port       = 3000
+    to_port         = 3000
     security_groups = [aws_security_group.alb_ybhackathon.id]
   }
 

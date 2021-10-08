@@ -1,7 +1,7 @@
 resource "aws_acm_certificate" "yb_dev" {
-  domain_name               = "backend.bscyb.dev"
+  domain_name               = "center.bscyb.dev"
   validation_method         = "DNS"
-  subject_alternative_names = ["*.backend.bscyb.dev"]
+  subject_alternative_names = ["*.center.bscyb.dev"]
 
   lifecycle {
     create_before_destroy = true

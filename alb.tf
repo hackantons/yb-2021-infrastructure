@@ -38,7 +38,7 @@ resource "aws_security_group" "alb_ybhackathon" {
 resource "aws_alb_target_group" "ybhackathon" {
   name        = "ybhackathon-2021"
   protocol    = "HTTP"
-  port        = "5080"
+  port        = "3000"
   vpc_id      = aws_vpc.ybhackathon_vpc.id
   target_type = "ip"
 
