@@ -43,7 +43,7 @@ resource "aws_alb_target_group" "ybhackathon" {
   target_type = "ip"
 
   health_check {
-    path = "/health/ready"
+    path = "/api/health/ready"
   }
 }
 
