@@ -41,7 +41,9 @@ data "aws_iam_policy_document" "task" {
       "ecr:GetDownloadUrlForLayer",
       "ecr:BatchGetImage",
       "logs:CreateLogStream",
-      "logs:PutLogEvents"
+      "logs:PutLogEvents",
+      "secretsmanager:*",
+      "kms:Decrypt"
     ]
   }
 }
