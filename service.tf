@@ -1,11 +1,21 @@
 resource "aws_ecs_service" "ybhackathon_service" {
   name        = "ybhackathon-2021-backend-service"
   cluster     = aws_ecs_cluster.ybhackathon.id
-  launch_type = "FARGATE"
+  #launch_type = "FARGATE"
 
   task_definition = "ybhackathon-2021-backend"
 
   desired_count = 1
+
+  capacity_provider_strategy {
+      capacity_provider = "FARGATE_SPOT"
+      weight            = 99
+  }
+
+  capacity_provider_strategy {
+      capacity_provider = "FARGATE"
+      weight            = 1
+  }
 
   load_balancer {
     target_group_arn = aws_alb_target_group.ybhackathon.arn
@@ -20,7 +30,8 @@ resource "aws_ecs_service" "ybhackathon_service" {
   }
 
   lifecycle {
-    ignore_changes = [desired_count, task_definition]
+    #ignore_changes = [desired_count, task_definition]
+    ignore_changes = [task_definition]
   }
 
   depends_on = [
